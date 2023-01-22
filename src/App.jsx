@@ -11,7 +11,7 @@ import CardMedia from "@mui/material/CardMedia";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 // Images
-import Perfume from "./assets/images/image-product-desktop.jpg";
+import PerfumeDesktop from "./assets/images/image-product-desktop.jpg";
 
 // Utils
 import { Colors } from "./common/utils/constants";
@@ -19,27 +19,43 @@ import { Colors } from "./common/utils/constants";
 function App() {
   return (
     <Stack
-      sx={{ width: "100vw", height: "100vh", backgroundColor: Colors.primary }}
+      sx={{
+        width: "100vw",
+        height: { xs: "100%", md: "100vh" },
+        backgroundColor: Colors.primary,
+      }}
     >
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Stack direction="row" justifyContent="center" sx={{ mt: 20 }}>
-            <Stack sx={{ width: "300px", height: "500px" }}>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            justifyContent="center"
+            sx={{ mt: 20, p: { xs: 2 } }}
+          >
+            <Stack sx={{ width: { xs: "100%", md: "300px" }, height: "500px" }}>
               <CardMedia
                 component="img"
                 height="500"
-                image={Perfume}
+                image={PerfumeDesktop}
                 alt="Perfume"
-                sx={{ borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }}
+                sx={{
+                  borderTopLeftRadius: 8,
+                  borderTopRightRadius: { xs: 8, md: 0 },
+                  borderBottomLeftRadius: { xs: 0, md: 8 },
+                  backgroundRepeat: "no-repeat",
+                }}
               />
             </Stack>
             <Stack
+              justifyContent={{ xs: "center" }}
               sx={{
-                width: "300px",
+                width: { xs: "100%", md: "300px" },
                 height: "500px",
-                borderTopRightRadius: 8,
-                borderBottomRightRadius: 8,
+                borderTopRightRadius: { xs: 0, md: 8 },
+                borderBottomRightRadius: { xs: 8, md: 8 },
+                borderBottomLeftRadius: { xs: 8, md: 0 },
                 boxShadow: 2,
+                bgcolor: Colors.white,
               }}
             >
               <Typography
@@ -73,6 +89,7 @@ function App() {
                     alignSelf: "center",
                     mx: 2,
                     color: Colors.grey,
+                    fontWeight: "bold",
                   }}
                 >
                   R169.99
@@ -82,7 +99,14 @@ function App() {
                 <Button
                   variant="contained"
                   startIcon={<AddShoppingCartIcon />}
-                  sx={{ p: 1, backgroundColor: Colors.secondary }}
+                  sx={{
+                    p: 1,
+                    backgroundColor: Colors.secondary,
+                    ":hover": {
+                      bgcolor: Colors.secondary,
+                      borderColor: Colors.secondary,
+                    },
+                  }}
                 >
                   Add to Cart
                 </Button>
